@@ -12,5 +12,5 @@ provider "google" {
   credentials = file("key.json")
   project = "fine-citadel-442015-v3"
   region  = "asia-south1"
-  zone    = "asia-south1-c"
+  zone    = "asia-south1-a"
 }
