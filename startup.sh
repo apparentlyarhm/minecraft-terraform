@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Config
+SERVER_URL="https://api.papermc.io/v2/projects/paper/versions/1.18.2/builds/388/downloads/paper-1.18.2-388.jar"
+SERVER_JAR="/opt/minecraft_server.jar"
+JRE_URL="https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.deb"
+JRE_FILE="/tmp/jdk17.deb"
+LOG_FILE="/var/log/minecraft-setup.log"
+EULA_FILE="/opt/minecraft/eula.txt"
+
 # Check if the script is running as root
 if [ "$EUID" -ne 0 ]; then
   echo "This script must be run as root. Attempting to re-run with sudo..."
@@ -8,7 +16,6 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 # Log setup to file
-LOG_FILE="/var/log/minecraft-setup.log"
 exec > >(tee -a "$LOG_FILE") 2>&1
 echo "Starting Minecraft server setup..."
 
@@ -33,9 +40,6 @@ else
 fi
 
 # Download and install JRE 17
-JRE_URL="https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.deb"
-JRE_FILE="/tmp/jdk17.deb"
-
 echo "Downloading JDK 17 from $JRE_URL..."
 wget -O "$JRE_FILE" "$JRE_URL"
 
@@ -46,9 +50,6 @@ echo "Verifying Java installation..."
 java -version || { echo "Java installation failed!"; exit 1; }
 
 # Download Minecraft server JAR
-SERVER_URL="https://api.papermc.io/v2/projects/paper/versions/1.18.2/builds/388/downloads/paper-1.18.2-388.jar"
-SERVER_JAR="/opt/minecraft_server.jar"
-
 echo "Downloading Minecraft server from $SERVER_URL..."
 mkdir -p /opt/minecraft
 wget -O "$SERVER_JAR" "$SERVER_URL"
@@ -59,7 +60,6 @@ cd /opt/minecraft
 java -jar "$SERVER_JAR" || true
 
 # Accept the EULA
-EULA_FILE="/opt/minecraft/eula.txt"
 if [ -f "$EULA_FILE" ]; then
     echo "Accepting the EULA..."
     sed -i 's/eula=false/eula=true/' "$EULA_FILE"
