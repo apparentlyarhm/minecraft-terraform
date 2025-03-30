@@ -54,7 +54,6 @@ echo "Downloading Minecraft server from $SERVER_URL..."
 mkdir -p /opt/minecraft
 wget -O "$SERVER_JAR" "$SERVER_URL"
 
-# Run the server to generate eula.txt
 echo "Running Minecraft server to generate eula.txt..."
 cd /opt/minecraft
 java -jar "$SERVER_JAR" || true
@@ -68,14 +67,11 @@ else
     exit 1
 fi
 
-# Run the server again
 echo "Starting Minecraft server..."
 tmux new-session -d -s minecraft "java -jar $SERVER_JAR"
 
-# Verify tmux session creation
 tmux ls
 
-# Debugging: Check the exit status of the tmux command
 if [ $? -ne 0 ]; then
     echo "Failed to create tmux session."
 else

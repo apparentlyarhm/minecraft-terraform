@@ -9,3 +9,16 @@ resource "google_compute_firewall" "minecraft_allow" {
     ports = ["22"]
   }
 }
+
+resource "google_compute_firewall" "motd-allow" {
+
+  // This firewall rule will allow MOTD querying
+  name = "motd-allow"
+  network = "default"
+  source_ranges = ["0.0.0.0/0"] 
+  
+  allow {
+    protocol = "udp"
+    ports = ["25565"]
+  }
+}
