@@ -74,6 +74,8 @@ I believe that there are better ways to do this, so I will update it if I incorp
 [TO BE UPDATED] But this will most likely involve a script that can clone the supporting applications and deploy them to your GCP account/ github pages to finish the configuration
 
 
-## See also
+## See also- related repos
 
-[Java Backend](https://github.com/apparentlyarhm/validator-gcp-java)
+[Spring Boot Backend](https://github.com/apparentlyarhm/validator-gcp-java)
+
+[NextJS frontend](https://github.com/apparentlyarhm/minecraft-vm-management-console)
