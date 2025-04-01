@@ -76,6 +76,6 @@ I believe that there are better ways to do this, so I will update it if I incorp
 
 ## See also- related repos
 
-[Spring Boot Backend](https://github.com/apparentlyarhm/validator-gcp-java)
+[the spring boot backend](https://github.com/apparentlyarhm/validator-gcp-java)
 
-[NextJS frontend](https://github.com/apparentlyarhm/minecraft-vm-management-console)
+[the nextJS frontend](https://github.com/apparentlyarhm/minecraft-vm-management-console)
