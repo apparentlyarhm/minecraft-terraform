@@ -1,32 +1,27 @@
 resource "google_compute_instance" "minecraft_main_vm" {
-    
-    name = "minecraft-main-vm"
-    machine_type = "c4-standard-2"
-    tags = ["http-server", "https-server","ib-health-check"]
+  name                = "minecraft-main-vm"
+  machine_type        = "c4-standard-2"
+  tags                = ["http-server", "https-server", "ib-health-check"]
+  can_ip_forward      = false
+  deletion_protection = false
+  enable_display      = false
 
- boot_disk {
-  auto_delete = false
-
+  boot_disk {
+    auto_delete = false
     initialize_params {
       image = "debian-cloud/debian-11"
     }
   }
 
-  can_ip_forward      = false
-  deletion_protection = false
-  enable_display      = false
-
-
   network_interface {
-    network = "default"
+    network    = "default"
     subnetwork = "default"
     access_config {
       network_tier = "PREMIUM"
-  
     }
   }
   metadata = {
-    "startup-script" = file("startup.sh") 
+    "startup-script"  = file("startup.sh") 
     "enable-osconfig" = true
   }
 
