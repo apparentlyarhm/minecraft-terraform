@@ -13,12 +13,13 @@ terraform {
 
 
 provider "github" {
+  token = var.GITHUB_TOKEN
+  owner = var.GITHUB_OWNER
   
 }
 
 provider "google" {
-  credentials = file("key.json")
-  project = "fine-citadel-442015-v3"
-  region  = "asia-south1"
-  zone    = "asia-south1-a"
+  credentials = file("terraform-sa-key.json")
+  project = var.GOOGLE_PROJECT
+  // region and zone can be resoruce specific.
 }

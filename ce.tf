@@ -1,6 +1,6 @@
 resource "google_compute_instance" "minecraft_main_vm" {
   name                = "minecraft-main-vm"
-  machine_type        = "c4-standard-2"
+  machine_type        = "e2-micro"
   tags                = ["http-server", "https-server", "ib-health-check"]
   can_ip_forward      = false
   deletion_protection = false
@@ -9,7 +9,7 @@ resource "google_compute_instance" "minecraft_main_vm" {
   boot_disk {
     auto_delete = false
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = "debian-cloud/debian-12"
     }
   }
 
