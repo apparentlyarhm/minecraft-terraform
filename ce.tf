@@ -1,4 +1,6 @@
 resource "google_compute_instance" "minecraft_main_vm" {
+  zone                = var.MINECRAFT_VM_ZONE
+  
   name                = "minecraft-main-vm"
   machine_type        = "e2-micro"
   tags                = ["http-server", "https-server", "ib-health-check"]
@@ -21,13 +23,8 @@ resource "google_compute_instance" "minecraft_main_vm" {
     }
   }
   metadata = {
-    "startup-script"  = file("startup.sh") 
+    "startup-script"  = file("startup.sh")
     "enable-osconfig" = true
-  }
-
-  service_account {
-    email  = google_service_account.default.email
-    scopes = ["cloud-platform"]
   }
 
 }
