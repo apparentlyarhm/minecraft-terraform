@@ -1,9 +1,8 @@
 resource "google_compute_instance" "minecraft_main_vm" {
   zone                = var.MINECRAFT_VM_ZONE
-  
-  name                = "minecraft-main-vm"
+  name                = "mc-machine-${random_string.random.result}"
   machine_type        = "e2-micro"
-  tags                = ["http-server", "https-server", "ib-health-check"]
+  tags                = ["http-server", "https-server", "ib-health-check", "mc"]
   can_ip_forward      = false
   deletion_protection = false
   enable_display      = false
@@ -18,6 +17,7 @@ resource "google_compute_instance" "minecraft_main_vm" {
   network_interface {
     network    = "default"
     subnetwork = "default"
+
     access_config {
       network_tier = "PREMIUM"
     }
@@ -26,5 +26,17 @@ resource "google_compute_instance" "minecraft_main_vm" {
     "startup-script"  = file("startup.sh")
     "enable-osconfig" = true
   }
+
+  service_account {
+    email  = google_service_account.main.email
+    scopes = [
+      "storage-rw",
+      "logging-write",
+      "monitoring-write",
+      "service-management",
+      "service-control",
+      "trace"
+      ]
+    }
 
 }

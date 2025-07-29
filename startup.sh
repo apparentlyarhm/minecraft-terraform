@@ -2,7 +2,7 @@
 
 # Config
 SERVER_URL="https://api.papermc.io/v2/projects/paper/versions/1.18.2/builds/388/downloads/paper-1.18.2-388.jar"
-SERVER_JAR="/opt/minecraft_server.jar"
+SERVER_JAR="/opt/minecraft/minecraft_server.jar"
 JRE_URL="https://download.oracle.com/java/17/archive/jdk-17.0.12_linux-x64_bin.deb"
 JRE_FILE="/tmp/jdk17.deb"
 LOG_FILE="/var/log/minecraft-setup.log"
@@ -61,7 +61,7 @@ java -jar "$SERVER_JAR" || true
 # Accept the EULA
 if [ -f "$EULA_FILE" ]; then
     echo "Accepting the EULA..."
-    sed -i 's/eula=false/eula=true/' "$EULA_FILE"
+    sed -i 's/eula=false/eula=True/' "$EULA_FILE"
 else
     echo "EULA file not found. Something went wrong during server setup."
     exit 1
