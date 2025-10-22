@@ -2,7 +2,7 @@
 
 LOG_FILE="/tmp/download_log_$(date +%Y%m%d_%H%M%S).log"
 DOWNLOAD_DIR="./downloads"
-TARGET_DIR="/home/ultimateshedic/mods/" # <-- change this to your desired location
+TARGET_DIR="/home/ultimateshedic/mods/"
 
 echo "[$(date)] Script started." | tee -a "$LOG_FILE"
 
