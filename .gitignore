@@ -39,3 +39,6 @@ terraform.rc
 
 # I dont know why but i think lock should be ignored
 .terraform.lock.hcl
+
+# mod list
+modlist.txt
