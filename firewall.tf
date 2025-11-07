@@ -6,7 +6,7 @@ resource "google_compute_firewall" "minecraft_allow" {
   
   allow {
     protocol    = "tcp"
-    ports       = ["25565"]
+    ports       = ["25565", "30000"]
   }
 
   allow {

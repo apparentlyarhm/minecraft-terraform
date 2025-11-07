@@ -40,3 +40,12 @@ resource "google_project_iam_member" "signer" {
   role    = "roles/iam.serviceAccountTokenCreator"
   member  = "serviceAccount:${google_service_account.main.email}"
 }
+
+// making it admin of compute so it can create and manange vms
+// at the time of writing this, there is no need for anything more than read access, but 
+// at some point in the future, this same service account may be used to manage vms
+resource "google_project_iam_member" "compute" {
+  project = var.GOOGLE_PROJECT
+  role    = "roles/compute.admin"
+  member  = "serviceAccount:${google_service_account.main.email}"
+}

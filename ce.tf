@@ -27,6 +27,7 @@ resource "google_compute_instance" "minecraft_main_vm" {
     "enable-osconfig" = true
   }
 
+  // this is important for gsutil to talk to gcs
   service_account {
     email  = google_service_account.main.email
     scopes = [
