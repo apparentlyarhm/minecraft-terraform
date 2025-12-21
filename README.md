@@ -73,6 +73,11 @@ I believe that there are better ways to do this, so I will update it if I incorp
 
 [TO BE UPDATED] But this will most likely involve a script that can clone the supporting applications and deploy them to your GCP account/ github pages to finish the configuration
 
+# Additional Scripts
+- `startup.sh` : **[LEGACY]** can be used to automatically setup and start server 
+- `uploader.sh`: Interacts with GCS to keep modlist with jars in sync
+- `mod-downloader.sh`: takes a \n separated list of downloadable links of mods, downloads and moves into a preset directory
+- `modlist-prepare.py`: prepares the afformentioned \n separated list (modrinth exports from prism)
 
 ## See also- related repos
 
