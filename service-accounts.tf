@@ -41,6 +41,13 @@ resource "google_project_iam_member" "signer" {
   member  = "serviceAccount:${google_service_account.main.email}"
 }
 
+// allows it to list buckets- we might need this for an updated version of the mod sync script
+resource "google_project_iam_member" "bucket-lister" {
+  project = var.GOOGLE_PROJECT
+  role    = "roles/storage.bucketViewer"
+  member  = "serviceAccount:${google_service_account.main.email}"
+}
+
 // making it admin of compute so it can create and manange vms
 // at the time of writing this, there is no need for anything more than read access, but 
 // at some point in the future, this same service account may be used to manage vms
