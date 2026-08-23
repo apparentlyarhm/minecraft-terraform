@@ -20,7 +20,7 @@ sync() {
 
     find "${JARS[@]}" -print0 | xargs -0 -n1 basename > "$OUTPUT_FILE"
 
-    gsutil cp "$OUTPUT_FILE" "$DEST_PATH/modlist.txt".
+    gsutil cp "$OUTPUT_FILE" "$DEST_PATH/modlist.txt"
     gcloud storage rsync "$MODS_DIR" "$FILES_PATH"
 
     echo "$(date): Sync complete."
@@ -40,6 +40,6 @@ while read FILENAME; do
     fi
 
     # Start a background subshell that waits 5 seconds then runs sync
-    ( sleep 5 && sync_mods ) &
+    ( sleep 5 && sync ) &
     PID=$!
 done
